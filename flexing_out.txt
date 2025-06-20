@@ -72,72 +72,14 @@ Make sure any mission-critical decisions are not skipped over
 
 [IDEA]
 
-AI Virtual Assistant System Overview
+I want to create a ChatGpt like interface where users can chat with workflows configured on n8n. The user should be able to get an overview of their company. based on Prompts they type in the chat. 
 
-The core idea is to develop an AI-driven Virtual Assistant tailored for small and medium-sized businesses, designed to streamline operations and enhance productivity for multiple stakeholders—CEOs, workers, investors, and customers—across platforms like WhatsApp, Telegram, Google Meet, Zoom, and Discord. For CEOs, the AI provides daily and weekly summaries of activities, flags urgent issues, suggests task assignments based on team skills and availability, automates onboarding for different user types, and eventually acts as a Digital Twin to respond on their behalf while ensuring seamless private escalations. Workers benefit from task assignments aligned with personal growth goals, team connection suggestions, and morale tracking to foster a supportive work environment. Investors receive non-intrusive, customizable dashboards and high-priority notifications about critical issues to stay informed without micromanaging. Customers enjoy direct access to personalized support, proactive updates, and smooth handoffs to human staff when needed. AI system integrators can leverage a drag-and-drop interface and a database of pre-configured sub-agents to rapidly customize and deploy these solutions, ensuring scalability, transparency, and compliance with data privacy laws like GDPR through iterative development and feedback loops.
+A usecase would for example a summery of everything that is happening in the comapny depending on the conversation happening in different channels and what employees are doing on notion and the like. But ofcourse it all depends with the workflow the chat is configured to comunicate with
+
 
 [MVP]
-
-🔹 1. Core System Infrastructure
- Multi-platform integration (start with WhatsApp and Telegram)
-
- Centralized backend for message routing and conversation state
-
- User role detection (CEO, worker, investor, customer)
-
- GDPR-compliant data storage and consent flow
-
-🔹 2. CEO Features (Phase 1)
- Daily & weekly activity summaries (via WhatsApp/Telegram)
-
- Urgent issue alerts (based on keyword/priority detection)
-
- Task assignment suggestions (based on a manual skills/availability matrix)
-
- Private escalation pathways (e.g., direct DM alerts)
-
- MVP Digital Twin prototype (template-based auto-response with opt-in confirmation)
-
-🔹 3. Worker Features
- Task assignments with short explanation & context
-
- Mood check-ins (e.g., simple 3-point emoji scale daily)
-
- Team connection suggestions (manual matching based on goals/interests)
-
- Personal growth tagging on tasks (e.g., “leadership”, “problem-solving”)
-
-🔹 4. Investor Features
- Lightweight investor dashboard (simple web UI or WhatsApp digest)
-
- Opt-in for alerts on predefined critical metrics/events
-
- Summary mode toggle: Weekly brief or real-time pings
-
-🔹 5. Customer Features
- FAQ and support via chat with fallback to human
-
- Ticket creation and handoff system
-
- Proactive updates (e.g., “your issue is being reviewed”)
-
- Customer intent detection (purchase/support/feedback)
-
-🔹 6. Integrator Toolkit (Admin / Developer)
- Drag-and-drop configuration UI (MVP: JSON editor with visual preview)
-
- Library of pre-configured "mini agents" (e.g., FAQ bot, summary generator)
-
- Agent templating system (basic condition/action rules)
-
- Deployment manager for target platforms (initially WhatsApp + Telegram)
-
-🔹 7. Feedback & Learning Loops
- Feedback buttons after responses (👍 / 👎)
-
- Simple analytics dashboard (volume, satisfaction, response time)
-
- Iteration flow for customizing based on feedback
-
+User profile, 
+chat interface, 
+Template prompt buttons relevant to the user
 
 </context>
