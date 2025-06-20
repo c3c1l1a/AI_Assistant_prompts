@@ -1,0 +1,337 @@
+<goal>
+I'd like for you to help me brainstorm the overall technical structure of my application ona  high level. You should act like a Senior Software Engineer that has extensive experience developing, and building architecture for large scale web applications. You should ask me follow up questions as we proceed if you think it's necessary to gather a fuller picture. Any time I answer questions, you re-integrate the responses and generate a fully new output that integrates everything.
+
+</goal>
+<format>
+Return your format in Markdown, without pre-text or post-text descriptions.
+
+## Features (MVP)
+### Feature Name
+2-3 sentence summary of what the feature is or does
+
+#### Tech Involved
+* Main Technologies Involved w/ Feature
+
+#### Main Requirements
+* Any
+* Requirements
+* Of Feature
+* That Impact
+* Tech Choices & Implementations
+
+## System Diagram
+An image detailing a full system diagram of the MVP. Please create a clean mermaid diagram with clear service relationships
+
+## List of Technical/Architecture Consideration Questions
+* list
+* of
+* Architecture
+* questions
+
+</format>
+
+<warnings-or-guidance>
+x
+</warnings-or-guidance>
+
+<context>
+<features-list>
+## Features List
+
+### Authentication & User Management
+- [ ] User can create an account and authenticate securely
+- [ ] User can connect their n8n instance via API key or OAuth
+- [ ] User can manage team access and permissions
+- [ ] User can configure which workflows are accessible via chat
+
+### Chat Interface
+- [ ] User can send natural language queries about their business
+- [ ] User can see real-time responses from connected n8n workflows
+- [ ] User can view conversation history and bookmark important insights
+- [ ] User can export chat conversations or specific insights
+
+### Chat History & Persistence
+- [ ] User can access their complete chat history across sessions
+- [ ] User can search through previous conversations by keywords or date
+- [ ] User can organize chats into folders or projects
+- [ ] User can star/favorite important conversations for quick access
+- [ ] User can delete individual messages or entire conversation threads
+- [ ] System auto-saves all conversations with timestamps and metadata
+- [ ] User can share specific conversations or insights with team members
+
+### Workflow Integration
+- [ ] System can discover and list available n8n workflows
+- [ ] System can execute workflows based on chat prompts
+- [ ] System can handle workflow responses and format them conversationally
+- [ ] System can show workflow execution status and handle errors gracefully
+
+### Template & Quick Actions
+- [ ] User can access pre-configured prompt templates relevant to their role
+- [ ] User can create and save custom prompt templates
+- [ ] User can see suggested follow-up questions based on previous queries
+- [ ] Templates are contextual based on connected data sources
+
+### Connection Visualization
+- [ ] User can see badges/indicators of connected data sources
+- [ ] User can view the health status of each connection
+- [ ] User can see which data sources contributed to each response
+- [ ] User can manage and configure data source connections
+
+### UX/UI Considerations
+- [ ] **Chat Interface**: Clean, WhatsApp/ChatGPT-style interface with message bubbles
+- [ ] **Chat History Sidebar**: Collapsible left panel showing conversation list with preview text and dates
+- [ ] **Search & Filter**: Global search bar with filters for date range, data sources, and conversation type
+- [ ] **Loading States**: Show typing indicators, workflow execution progress, and data fetching status
+- [ ] **Connection Badges**: Floating mini-badges showing active integrations with status indicators (green/red/yellow)
+- [ ] **Template Drawer**: Expandable side panel or bottom sheet with categorized prompt templates
+- [ ] **Progressive Disclosure**: Complex data responses can be expanded/collapsed for better readability
+- [ ] **Conversation Threading**: Visual indicators for related queries and follow-up questions
+- [ ] **Mobile Responsiveness**: Touch-friendly interface with swipe gestures for navigation and chat management
+
+### Non-Functional Requirements
+- [ ] **Performance**: Chat responses within 3-5 seconds for simple queries, progress indicators for complex workflows
+- [ ] **Scalability**: Support for multiple concurrent users and workflow executions
+- [ ] **Security**: End-to-end encryption for sensitive business data, secure API key management, encrypted chat history storage
+- [ ] **Accessibility**: Screen reader compatibility, keyboard navigation, high contrast mode
+- [ ] **Data Retention**: Configurable chat history retention policies for compliance requirements
+
+</features-list>
+
+<current-tech-choices>
+The frontend will be built in NextJS
+The backend will be built using ServerActions
+The database will be Postgres, hosted through Supabase
+The authentication will use Clerk
+Use Prisma ORM for database interactions
+Deployment on Vercel
+</current-tech-choices>
+
+</context>
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+## Features (MVP)
+
+### Authentication & Role-Based Access Control
+A secure user authentication system with three-tier permissions (Admin/Member/Viewer) and granular workflow access control. Admins can manage team members and configure which workflows each role can access.
+
+#### Tech Involved
+* Clerk for authentication and user management
+* Prisma ORM with role-based data models
+* Supabase Postgres for user profiles, roles, and workflow permissions
+* NextJS middleware for permission enforcement
+
+#### Main Requirements
+* Three-tier role system (Admin/Member/Viewer) with different capabilities
+* Granular workflow access permissions per user/role
+* Admin interface for managing team members and workflow assignments
+* Permission-based UI rendering and API endpoint protection
+
+### Private Chat Interface with Selective Sharing
+Individual chat interfaces where users only see their own conversations and workflow results, with optional admin visibility for team oversight and support.
+
+#### Tech Involved
+* NextJS with React for personalized chat components
+* Supabase Row Level Security (RLS) for data isolation
+* Server Actions for user-specific message handling
+* Prisma with user-scoped queries for chat history
+
+#### Main Requirements
+* User-isolated chat conversations and workflow results
+* Admin oversight capabilities for support and monitoring
+* Personal chat history with user-specific search and organization
+* Secure data isolation between team members
+
+### Workflow Permission System & Execution Engine
+Advanced workflow management with per-user access controls, parameter handling, and execution tracking. Users can only see and execute workflows they have permission to access.
+
+#### Tech Involved
+* n8n REST API for workflow discovery and execution
+* Prisma for workflow permissions and parameter schemas
+* NextJS API routes for webhook endpoints and parameter validation
+* Server Actions for permission-checked workflow execution
+
+#### Main Requirements
+* Per-user workflow visibility and execution permissions
+* Dynamic workflow parameter collection and validation
+* Webhook handling for workflow completion with user-specific updates
+* Workflow execution audit trail with permission context
+
+### Admin Dashboard & Team Management
+Comprehensive admin interface for managing team members, assigning workflow permissions, monitoring usage, and configuring organizational settings.
+
+#### Tech Involved
+* NextJS admin pages with role-based routing
+* Prisma for team management operations
+* Supabase for admin analytics and reporting
+* Role-based component rendering and data access
+
+#### Main Requirements
+* Team member invitation and role assignment interface
+* Workflow permission management with bulk assignment capabilities
+* Usage monitoring and audit log viewing for admins
+* Organizational settings and n8n connection management
+
+## System Diagram
+
+```mermaid
+graph TB
+    subgraph "Frontend (NextJS)"
+        UI[Personal Chat Interface]
+        ADMIN[Admin Dashboard]
+        PERM[Permission Manager]
+        PARAMS[Workflow Parameters UI]
+    end
+    
+    subgraph "Backend (NextJS Server Actions + API Routes)"
+        AUTH[Authentication & RBAC]
+        CHAT[Private Chat Handler]
+        WORK[Permission-Checked Workflow Executor]
+        WEBHOOK[User-Specific Webhook Handler]
+        AUDIT[Audit & Usage Logger]
+        TEAM[Team Management API]
+    end
+    
+    subgraph "Data Layer"
+        SUPABASE[(Supabase Postgres with RLS)]
+        PRISMA[Prisma ORM]
+        PERMISSIONS[Permission Matrix]
+    end
+    
+    subgraph "External Services"
+        CLERK[Clerk Auth with Roles]
+        N8N[n8n Instance]
+        VERCEL[Vercel Deployment]
+    end
+    
+    UI --> CHAT
+    ADMIN --> TEAM
+    PERM --> PERMISSIONS
+    PARAMS --> WORK
+    
+    AUTH --> CLERK
+    CHAT --> PRISMA
+    WORK --> N8N
+    WEBHOOK --> WORK
+    AUDIT --> PRISMA
+    TEAM --> PERMISSIONS
+    
+    PRISMA --> SUPABASE
+    PERMISSIONS --> SUPABASE
+    N8N -.->|User-Specific Webhook| WEBHOOK
+    
+    VERCEL -.-> UI
+    VERCEL -.-> AUTH
+    VERCEL -.-> CHAT
+    VERCEL -.-> WORK
+    VERCEL -.-> WEBHOOK
+```
+
+## Database Schema Considerations
+
+### Core Permission Models
+```prisma
+model User {
+  id          String   @id
+  clerkId     String   @unique
+  email       String
+  role        Role     @default(MEMBER)
+  orgId       String
+  // ... other fields
+}
+
+model WorkflowPermission {
+  id          String   @id
+  userId      String
+  workflowId  String
+  canExecute  Boolean  @default(false)
+  canView     Boolean  @default(true)
+  // ... other fields
+}
+
+model ChatMessage {
+  id          String   @id
+  userId      String   // RLS policy on this field
+  content     String
+  workflowId  String?
+  executionId String?
+  // ... other fields
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+  VIEWER
+}
+```
+
+## Technical Implementation Guidance
+
+### Role-Based Access Control Implementation
+* **Clerk Metadata**: Store user roles in Clerk's user metadata for consistent access across sessions
+* **Supabase RLS**: Implement Row Level Security policies to ensure users only see their own data
+* **Middleware Protection**: NextJS middleware to check permissions before API routes and page access
+* **UI Conditional Rendering**: Show/hide features based on user role and workflow permissions
+
+### Workflow Permission Management
+* **Permission Matrix**: Database table mapping users to workflows with specific permissions
+* **Dynamic Workflow Discovery**: Filter n8n workflow list based on user permissions before display
+* **Parameter Schema Storage**: Store workflow parameter definitions to build dynamic forms
+* **Execution Validation**: Double-check permissions server-side before workflow execution
+
+### Webhook Configuration for n8n
+**n8n Webhook Setup Steps:**
+1. **Create Webhook Node**: Add HTTP Request node at end of workflows
+2. **Dynamic URL Generation**: Use expression `{{$json.webhookUrl}}` where webhookUrl is passed as parameter
+3. **Payload Structure**: Send back execution ID, status, results, and user context
+4. **Authentication**: Include shared secret or API key for webhook verification
+
+**Example n8n Webhook Payload:**
+```json
+{
+  "executionId": "{{$execution.id}}",
+  "workflowId": "{{$workflow.id}}",
+  "userId": "{{$json.userId}}",
+  "status": "success",
+  "results": "{{$json.results}}",
+  "timestamp": "{{$now}}"
+}
+```
+
+### Parameter Handling System
+* **Schema Discovery**: Query n8n API to get workflow parameter definitions
+* **Dynamic Form Generation**: Build React forms based on parameter schemas
+* **Type Validation**: Client and server-side validation for parameter types
+* **Context Integration**: Merge chat context with explicit parameters before execution
+
+### Private Chat Architecture
+* **User Isolation**: All chat queries filtered by authenticated user ID
+* **Admin Override**: Special admin queries to view user conversations for support
+* **Execution Results**: Store workflow results linked to specific users and conversations
+* **Search Scoping**: User-specific search that only returns their own conversations
+
+## n8n Integration Requirements
+
+### Webhook Endpoint Setup
+* **Endpoint**: `POST /api/webhooks/n8n/[executionId]`
+* **Authentication**: Verify webhook signature or shared secret
+* **User Context**: Include user ID in webhook payload to route results correctly
+* **Status Updates**: Update execution status and notify specific user via real-time updates
+
+### Parameter Passing to n8n
+* **Combined Context**: Merge chat conversation context with explicit workflow parameters
+* **Parameter Validation**: Validate required parameters before workflow execution
+* **Error Handling**: Return clear parameter validation errors to users
+* **Default Values**: Support default parameter values from workflow definitions
+
+## List of Technical/Architecture Consideration Questions
+
+* Do you want Viewers to see any workflows at all, or should they only see chat history without workflow execution capabilities?
+* Should Admins be able to view all team members' private conversations, or only execution logs and usage statistics?
+* For workflow parameters, do you want a guided form interface or should users specify parameters through natural language in chat?
+* Do you need workflow categories or tags to help organize permissions (e.g., "Finance Workflows", "Marketing Workflows")?
+* Should there be any approval workflow where Members request access to new workflows from Admins?
+* Do you want to implement any workspace/project concept where different workflows are grouped together?
+* Should workflow execution history be visible to Admins for monitoring and debugging purposes?
+* Do you need any bulk operations for Admins (e.g., assign multiple workflows to multiple users at once)?
