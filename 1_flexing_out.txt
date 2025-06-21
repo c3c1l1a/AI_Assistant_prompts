@@ -101,106 +101,98 @@ GitHub
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------
-Perfect addition! Let me integrate the chat history feature and address that in the updated specification.
-
 ## Elevator Pitch
-A conversational AI interface that connects to your existing business tools through n8n workflows, allowing executives and teams to get instant insights about their company operations through natural language queries - like having a personal business analyst available 24/7.
+A plug-and-play conversational business intelligence platform that connects to your company's n8n instance, automatically generates relevant prompts based on your connected services, and delivers real-time company insights through natural language conversations - no technical setup required.
 
 ## Problem Statement
-Business leaders and teams struggle to get quick, comprehensive insights from their scattered business tools and data sources. They need to manually check multiple platforms (Slack, Notion, Gmail, etc.) to understand what's happening across their organization, leading to delayed decision-making and missed opportunities for strategic insights.
+Business leaders and teams struggle to get a holistic view of their company's operations because critical information is siloed across multiple tools. Even with workflow automation like n8n, accessing insights still requires technical knowledge to query data effectively. Teams need a simple, conversational interface that can instantly pull real-time information from their existing n8n workflows without requiring technical expertise.
 
 ## Target Audience
-- **Primary**: Small to medium business owners, executives, and team leads who need quick access to business intelligence
-- **Secondary**: Operations managers, project managers, and team members who need cross-platform visibility
-- **Tertiary**: Consultants and agencies managing multiple client workflows
+- **Primary**: Small to medium business owners and executives already using n8n (10-500 employees)
+- **Secondary**: Operations managers, team leads, and department heads in n8n-enabled organizations
+- **Technical requirement**: Companies with existing n8n instances (positioned as an add-on solution)
 
 ## USP
-The first chat-based business intelligence tool that leverages existing n8n workflows, providing personalized company insights through natural language without requiring technical setup or data migration.
+The first conversational interface for n8n workflows that automatically generates contextual business prompts and delivers real-time insights through chat, transforming technical workflow automation into accessible business intelligence.
 
 ## Target Platforms
 - Web application (primary)
-- Mobile-responsive design for on-the-go insights
+- Mobile-responsive design for real-time monitoring
 
 ## Features List
 
-### Authentication & User Management
-- [ ] User can create an account and authenticate securely
-- [ ] User can connect their n8n instance via API key or OAuth
-- [ ] User can manage team access and permissions
-- [ ] User can configure which workflows are accessible via chat
+### User Management & Company Setup
+- [ ] As a company admin, I want to connect my n8n instance to enable chat functionality
+- [ ] As a user, I want to authenticate through my company's system to access our specific data
+- [ ] As an admin, I want to manage team member access and permissions within our n8n scope
 
-### Chat Interface
-- [ ] User can send natural language queries about their business
-- [ ] User can see real-time responses from connected n8n workflows
-- [ ] User can view conversation history and bookmark important insights
-- [ ] User can export chat conversations or specific insights
+### n8n Instance Integration
+- [ ] As a system, I need to connect to company-specific n8n instances via API
+- [ ] As a system, I need to discover available workflows and their capabilities automatically
+- [ ] As a system, I need to maintain real-time connection status with the n8n instance
 
-### Chat History & Persistence
-- [ ] User can access their complete chat history across sessions
-- [ ] User can search through previous conversations by keywords or date
-- [ ] User can organize chats into folders or projects
-- [ ] User can star/favorite important conversations for quick access
-- [ ] User can delete individual messages or entire conversation threads
-- [ ] System auto-saves all conversations with timestamps and metadata
-- [ ] User can share specific conversations or insights with team members
+### Intelligent Chat Interface
+- [ ] As a user, I want to type natural language queries that get translated to n8n workflow calls
+- [ ] As a user, I want to see real-time responses from my company's live data
+- [ ] As a user, I want the chat to understand context and maintain conversation flow
 
-### Workflow Integration
-- [ ] System can discover and list available n8n workflows
-- [ ] System can execute workflows based on chat prompts
-- [ ] System can handle workflow responses and format them conversationally
-- [ ] System can show workflow execution status and handle errors gracefully
+### Context-Aware Prompt Generation Engine
+- [ ] As a system, I need to analyze data from connected services to identify business entities (clients, projects, team members, deals)
+- [ ] As a system, I need to understand relationships between entities across different platforms (e.g., Slack channels related to specific clients)
+- [ ] As a user, I want to see intelligent prompts like "What's the latest on the Johnson deal?" based on actual client names from my CRM
+- [ ] As a user, I want contextual prompts that combine multiple data sources ("How is the marketing team's campaign performance affecting sales calls?")
+- [ ] As a system, I need to learn from user interactions to improve prompt relevance over time
 
-### Template & Quick Actions
-- [ ] User can access pre-configured prompt templates relevant to their role
-- [ ] User can create and save custom prompt templates
-- [ ] User can see suggested follow-up questions based on previous queries
-- [ ] Templates are contextual based on connected data sources
+### Business Entity Recognition
+- [ ] As a system, I need to extract and maintain a knowledge graph of business entities from all connected services
+- [ ] As a system, I need to identify key people, projects, clients, and initiatives across platforms
+- [ ] As a user, I want prompts that reference actual names and contexts from my business data
+- [ ] As a system, I need to handle entity disambiguation (e.g., "Johnson" the client vs "Johnson" the employee)
 
-### Connection Visualization
-- [ ] User can see badges/indicators of connected data sources
-- [ ] User can view the health status of each connection
-- [ ] User can see which data sources contributed to each response
-- [ ] User can manage and configure data source connections
+### Auto-Generated Template Prompts
+- [ ] As a system, I need to analyze connected n8n nodes to generate relevant prompt templates
+- [ ] As a user, I want to see contextual prompt suggestions that match my available data sources
+- [ ] As a user, I want prompt templates to update automatically when new services are connected to n8n
+
+### Real-Time Data Streaming
+- [ ] As a user, I want to receive live updates when relevant data changes (new Slack messages, calendar events, etc.)
+- [ ] As a system, I need to establish webhook connections for real-time data flow
+- [ ] As a user, I want to see "live" indicators when data is actively streaming
+
+### Service Connection Visualization
+- [ ] As a user, I want to see which services are connected through my n8n workflows with live status badges
+- [ ] As a user, I want to understand which specific n8n nodes contributed to each response
+- [ ] As a user, I want clear error messages when n8n workflows fail or connections drop
+
+### Chat History & Context Management
+- [ ] As a user, I want to save conversation history with searchable context
+- [ ] As a user, I want to organize chats by business topics or time periods
+- [ ] As a system, I need to maintain conversation context while respecting data privacy
 
 ### UX/UI Considerations
-- [ ] **Chat Interface**: Clean, WhatsApp/ChatGPT-style interface with message bubbles
-- [ ] **Chat History Sidebar**: Collapsible left panel showing conversation list with preview text and dates
-- [ ] **Search & Filter**: Global search bar with filters for date range, data sources, and conversation type
-- [ ] **Loading States**: Show typing indicators, workflow execution progress, and data fetching status
-- [ ] **Connection Badges**: Floating mini-badges showing active integrations with status indicators (green/red/yellow)
-- [ ] **Template Drawer**: Expandable side panel or bottom sheet with categorized prompt templates
-- [ ] **Progressive Disclosure**: Complex data responses can be expanded/collapsed for better readability
-- [ ] **Conversation Threading**: Visual indicators for related queries and follow-up questions
-- [ ] **Mobile Responsiveness**: Touch-friendly interface with swipe gestures for navigation and chat management
+- [ ] **Connection Setup**: Simple n8n instance connection wizard with API key input and validation
+- [ ] **Live Data Indicators**: Pulsing badges and real-time counters showing active data streams
+- [ ] **Template Prompt Generation**: Dynamic suggestion chips that appear/disappear based on available workflows
+- [ ] **Real-time Updates**: Toast notifications and live message updates without page refresh
+- [ ] **Error Recovery**: Graceful handling of n8n downtime with retry mechanisms
+- [ ] **Mobile Real-time**: Push notification support for critical business alerts
 
 ### Non-Functional Requirements
-- [ ] **Performance**: Chat responses within 3-5 seconds for simple queries, progress indicators for complex workflows
-- [ ] **Scalability**: Support for multiple concurrent users and workflow executions
-- [ ] **Security**: End-to-end encryption for sensitive business data, secure API key management, encrypted chat history storage
-- [ ] **Accessibility**: Screen reader compatibility, keyboard navigation, high contrast mode
-- [ ] **Data Retention**: Configurable chat history retention policies for compliance requirements
+- [ ] **Performance**: Real-time response under 2 seconds, handle 100+ concurrent n8n workflow calls
+- [ ] **Scalability**: Support multiple n8n instances per company, auto-scaling based on workflow complexity
+- [ ] **Security**: Encrypted n8n API connections, no data storage of sensitive business information
+- [ ] **Accessibility**: Voice-to-text support for mobile users, keyboard shortcuts for power users
+- [ ] **Reliability**: 99.9% uptime with graceful n8n connection failure handling
 
 ## Monetization
-- Freemium model: Free tier with basic templates, limited monthly queries, and 30-day chat history
-- Pro tier: Unlimited queries, custom templates, unlimited chat history, advanced search, team collaboration
-- Enterprise tier: White-label options, advanced security, dedicated support, custom integrations, audit logs
+- **Freemium Model**: Free tier for single n8n instance, up to 5 users, basic templates
+- **Business Plan**: $49/month per n8n instance for unlimited users, advanced templates, priority support
+- **Enterprise**: Custom pricing for on-premise deployment, dedicated templates, white-labeling
 
-## Critical Questions or Clarifications
 
-1. **Chat History Scope**: Should chat history be personal to each user, or should there be shared team conversations that multiple users can access?
 
-2. **Data Retention Compliance**: Do you need configurable data retention policies for different industries (GDPR, HIPAA, etc.)? Some companies may need automatic deletion after certain periods.
 
-3. **Chat History Search**: How sophisticated should the search be? Simple keyword search, or should it include semantic search to find conversations by meaning/context?
 
-4. **n8n Integration Depth**: How technical is your target user? Should they configure n8n workflows themselves, or do you want to provide pre-built workflow templates?
 
-5. **Data Processing**: Will the chat interface need to process and analyze the raw data from n8n, or will n8n workflows handle all the data processing and return formatted insights?
 
-6. **Multi-tenancy**: Do you envision this as a single-tenant solution where each company has their own instance, or a multi-tenant SaaS where multiple companies share the platform?
 
-7. **Real-time vs Batch**: Should insights be real-time (querying live data) or would cached/scheduled data updates be acceptable for better performance?
-
-8. **Conversation Context**: How important is it for the chat to maintain context across multiple queries? Should it remember previous questions in a conversation thread?
-
-The chat history feature adds significant value for business intelligence use cases - users can track how metrics change over time, revisit important insights, and build on previous analyses. Which aspect would you like to explore further?
