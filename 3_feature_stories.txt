@@ -1,0 +1,515 @@
+<goal>
+You’re an experienced SaaS Founder with a background in Product Design & Product Management that obsesses about product and solving peoples problems. Your job is to take the app idea, and take on a consultative role to build out feature ideas. 
+
+The features are listed below in <features-list> and additional info about the app is in <app-details>
+
+Each time the user responds back to you, you integrate their responses into the overall plan, and then repeat back the entire plan, per the format below, which incorporates the clarifications
+</goal>
+<format>
+Return your format in Markdown, without pre-text or post-text descriptions.
+
+## Features List
+### Feature Category
+#### Feature
+- [] [User Stories]
+	- [] [List personas and their user stories. For each persona, provide several stories in this format: * As a X, I want to Y, so that Z.]
+##### UX/UI Considerations
+Bullet-point the step-by-step journey a user will have interacting with the product in detail with regard to this specific feature.
+- [] [Core Experience]
+	- [] [Description of different “states” of that screen]
+	- [] [How it handles state changes visually]
+	- [] [Animations, information architecture, progressive disclosure, visual hierarchy, etc]
+- [] [Advanced Users & Edge Cases]
+	- [] [Description of different “states” of that screen]
+	- [] [How it handles state changes visually]
+	- [] [Animations, information architecture, progressive disclosure, visual hierarchy, etc]
+
+</format>
+<warnings-and-guidance>
+<ux-guide>
+You must follow these rules:
+Bold simplicity with intuitive navigation creating frictionless experiences
+Breathable whitespace complemented by strategic color accents for visual hierarchy
+Strategic negative space calibrated for cognitive breathing room and content prioritization
+Systematic color theory applied through subtle gradients and purposeful accent placement
+Typography hierarchy utilizing weight variance and proportional scaling for information architecture
+Visual density optimization balancing information availability with cognitive load management
+Motion choreography implementing physics-based transitions for spatial continuity
+Accessibility-driven contrast ratios paired with intuitive navigation patterns ensuring universal usability
+Feedback responsiveness via state transitions communicating system status with minimal latency
+Content-first layouts prioritizing user objectives over decorative elements for task efficiency
+User goals and tasks - Understanding what users need to accomplish and designing to make those primary tasks seamless and efficient
+Information architecture - Organizing content and features in a logical hierarchy that matches users' mental models
+Progressive disclosure - Revealing complexity gradually to avoid overwhelming users while still providing access to advanced features
+Visual hierarchy - Using size, color, contrast, and positioning to guide attention to the most important elements first
+Affordances and signifiers - Making interactive elements clearly identifiable through visual cues that indicate how they work
+Consistency - Maintaining uniform patterns, components, and interactions across screens to reduce cognitive load
+Accessibility - Ensuring the design works for users of all abilities (color contrast, screen readers, keyboard navigation)
+Error prevention - Designing to help users avoid mistakes before they happen rather than just handling errors after they occur
+Feedback - Providing clear signals when actions succeed or fail, and communicating system status at all times
+Performance considerations - Accounting for loading times and designing appropriate loading states
+Mobile vs. desktop considerations - Adapting layouts and interactions for different device capabilities and contexts
+Responsive design - Ensuring the interface works well across various screen sizes and orientations
+User testing feedback loops - Incorporating iterative testing to validate assumptions and improve the design
+Platform conventions - Following established patterns from iOS/Android/Web to meet user expectations
+Microcopy and content strategy - Crafting clear, concise text that guides users through the experience
+Aesthetic appeal - Creating a visually pleasing design that aligns with brand identity while prioritizing usability
+Animations - Crafting beautiful yet subtle animations and transitions that make the app feel professional
+</ux-guide>
+</warnings-and-guidance>
+<context>
+<feature-list>
+### Authentication & User Management
+- [ ] User can create an account and authenticate securely
+- [ ] User can connect their n8n instance via API key or OAuth
+- [ ] User can manage team access and permissions
+- [ ] User can configure which workflows are accessible via chat
+
+### Chat Interface
+- [ ] User can send natural language queries about their business
+- [ ] User can see real-time responses from connected n8n workflows
+- [ ] User can view conversation history and bookmark important insights
+- [ ] User can export chat conversations or specific insights
+
+### Chat History & Persistence
+- [ ] User can access their complete chat history across sessions
+- [ ] User can search through previous conversations by keywords or date
+- [ ] User can organize chats into folders or projects
+- [ ] User can star/favorite important conversations for quick access
+- [ ] User can delete individual messages or entire conversation threads
+- [ ] System auto-saves all conversations with timestamps and metadata
+- [ ] User can share specific conversations or insights with team members
+
+### Workflow Integration
+- [ ] System can discover and list available n8n workflows
+- [ ] System can execute workflows based on chat prompts
+- [ ] System can handle workflow responses and format them conversationally
+- [ ] System can show workflow execution status and handle errors gracefully
+
+### Template & Quick Actions
+- [ ] User can access pre-configured prompt templates relevant to their role
+- [ ] User can create and save custom prompt templates
+- [ ] User can see suggested follow-up questions based on previous queries
+- [ ] Templates are contextual based on connected data sources
+
+### Connection Visualization
+- [ ] User can see badges/indicators of connected data sources
+- [ ] User can view the health status of each connection
+- [ ] User can see which data sources contributed to each response
+- [ ] User can manage and configure data source connections
+</feature-list>
+<app-details>
+
+## Elevator Pitch
+A conversational AI interface that connects to your existing business tools through n8n workflows, allowing executives and teams to get instant insights about their company operations through natural language queries - like having a personal business analyst available 24/7.
+
+## Problem Statement
+Business leaders and teams struggle to get quick, comprehensive insights from their scattered business tools and data sources. They need to manually check multiple platforms (Slack, Notion, Gmail, etc.) to understand what's happening across their organization, leading to delayed decision-making and missed opportunities for strategic insights.
+
+## Target Audience
+- **Primary**: Small to medium business owners, executives, and team leads who need quick access to business intelligence
+- **Secondary**: Operations managers, project managers, and team members who need cross-platform visibility
+- **Tertiary**: Consultants and agencies managing multiple client workflows
+
+## USP
+The first chat-based business intelligence tool that leverages existing n8n workflows, providing personalized company insights through natural language without requiring technical setup or data migration.
+
+
+
+### UX/UI Considerations
+- [ ] **Chat Interface**: Clean, WhatsApp/ChatGPT-style interface with message bubbles
+- [ ] **Chat History Sidebar**: Collapsible left panel showing conversation list with preview text and dates
+- [ ] **Search & Filter**: Global search bar with filters for date range, data sources, and conversation type
+- [ ] **Loading States**: Show typing indicators, workflow execution progress, and data fetching status
+- [ ] **Connection Badges**: Floating mini-badges showing active integrations with status indicators (green/red/yellow)
+- [ ] **Template Drawer**: Expandable side panel or bottom sheet with categorized prompt templates
+- [ ] **Progressive Disclosure**: Complex data responses can be expanded/collapsed for better readability
+- [ ] **Conversation Threading**: Visual indicators for related queries and follow-up questions
+- [ ] **Mobile Responsiveness**: Touch-friendly interface with swipe gestures for navigation and chat management
+
+### Non-Functional Requirements
+- [ ] **Performance**: Chat responses within 3-5 seconds for simple queries, progress indicators for complex workflows
+- [ ] **Scalability**: Support for multiple concurrent users and workflow executions
+- [ ] **Security**: End-to-end encryption for sensitive business data, secure API key management, encrypted chat history storage
+- [ ] **Accessibility**: Screen reader compatibility, keyboard navigation, high contrast mode
+- [ ] **Data Retention**: Configurable chat history retention policies for compliance requirements
+
+</app-details>
+</context>
+
+-----------------------------------------------------------------------------------------------------------------------------
+# SaaS Business Intelligence Chat App - Feature Specifications
+
+## Features List
+
+### Authentication & User Management
+
+#### Secure Account Creation & Authentication
+- [ ] User Stories
+  - [ ] As a business owner, I want to create an account quickly with my email so that I can start accessing my business insights immediately
+  - [ ] As a security-conscious executive, I want multi-factor authentication so that my sensitive business data remains protected
+  - [ ] As a team member, I want to sign in with my company's SSO so that I don't need to manage another password
+  - [ ] As a returning user, I want to stay logged in securely so that I can access my insights without repeatedly authenticating
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Clean, minimal sign-up form with progressive disclosure (email → password → verification)
+  - [ ] Visual feedback for password strength with real-time validation
+  - [ ] Smooth transitions between sign-up and sign-in states with micro-animations
+  - [ ] OAuth buttons prominently displayed with brand recognition (Google, Microsoft, etc.)
+- [ ] Advanced Users & Edge Cases
+  - [ ] MFA setup flow with QR code generation and backup codes presentation
+  - [ ] Account recovery flow with security questions and email verification
+  - [ ] Session timeout warnings with graceful re-authentication prompts
+
+#### n8n Instance Connection
+- [ ] User Stories
+  - [ ] As a technical user, I want to connect via API key so that I can maintain full control over my n8n instance
+  - [ ] As a non-technical user, I want OAuth connection so that I don't need to handle API keys manually
+  - [ ] As a team lead, I want to test my connection before saving so that I know it's working correctly
+  - [ ] As a security officer, I want to see what permissions are being requested so that I can make informed decisions
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Step-by-step wizard with clear instructions and visual progress indicators
+  - [ ] Connection method selection with clear pros/cons for each option
+  - [ ] Real-time connection testing with status indicators and error messaging
+  - [ ] Success state with celebration micro-animation and next steps guidance
+- [ ] Advanced Users & Edge Cases
+  - [ ] Advanced settings panel for custom endpoints and timeout configurations
+  - [ ] Connection health monitoring with automatic retry mechanisms
+  - [ ] Detailed error logs for troubleshooting failed connections
+
+#### Team Access & Permissions Management
+- [ ] User Stories
+  - [ ] As a business owner, I want to invite team members so that they can access relevant business insights
+  - [ ] As an admin, I want to set role-based permissions so that team members only see appropriate data
+  - [ ] As a team member, I want to understand what I can access so that I can work efficiently within my permissions
+  - [ ] As a manager, I want to audit team access so that I can ensure proper security governance
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Team management dashboard with clear role hierarchies and permission matrices
+  - [ ] Invite flow with email suggestions and role assignment during invitation
+  - [ ] Permission visualization through intuitive icons and color coding
+  - [ ] Bulk actions for managing multiple team members efficiently
+- [ ] Advanced Users & Edge Cases
+  - [ ] Advanced permission granularity with custom role creation
+  - [ ] Audit logs with filterable activity history and export capabilities
+  - [ ] Pending invitation management with resend and cancel options
+
+#### Workflow Access Configuration
+- [ ] User Stories
+  - [ ] As a workflow creator, I want to choose which workflows are chat-accessible so that I maintain control over my automations
+  - [ ] As a business user, I want to see available workflows so that I know what insights I can request
+  - [ ] As an admin, I want to bulk-configure workflow access so that I can efficiently manage large numbers of workflows
+  - [ ] As a team member, I want to understand why certain workflows aren't available so that I can request access if needed
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Workflow library with toggle switches and clear descriptions
+  - [ ] Category-based organization with search and filter capabilities
+  - [ ] Visual workflow status indicators (enabled, disabled, error states)
+  - [ ] Batch selection tools with select-all and category-based selection
+- [ ] Advanced Users & Edge Cases
+  - [ ] Workflow dependency visualization showing interconnected automations
+  - [ ] Testing interface for workflow execution before enabling chat access
+  - [ ] Access request system with approval workflows for restricted automations
+
+### Chat Interface
+
+#### Natural Language Query Processing
+- [ ] User Stories
+  - [ ] As a business owner, I want to ask questions in plain English so that I don't need to learn technical query languages
+  - [ ] As a user, I want intelligent suggestions as I type so that I can discover new ways to query my data
+  - [ ] As a frequent user, I want the system to understand context from previous messages so that I can have natural conversations
+  - [ ] As a mobile user, I want voice input so that I can query my data hands-free while on the go
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Expandable text input with smart suggestions appearing as subtle overlays
+  - [ ] Typing indicators and processing states with elegant loading animations
+  - [ ] Message threading with visual connection lines for related queries
+  - [ ] Auto-complete suggestions based on available workflows and previous queries
+- [ ] Advanced Users & Edge Cases
+  - [ ] Voice input with real-time transcription and voice command recognition
+  - [ ] Multi-language support with automatic language detection
+  - [ ] Complex query building with guided prompt construction tools
+
+#### Real-time Workflow Response Display
+- [ ] User Stories
+  - [ ] As a user, I want to see workflow execution progress so that I know my request is being processed
+  - [ ] As a data consumer, I want responses formatted conversationally so that I can quickly understand insights
+  - [ ] As a visual learner, I want charts and graphs embedded in responses so that I can grasp data patterns quickly
+  - [ ] As a detail-oriented user, I want to expand responses for more information so that I can dive deeper when needed
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Progressive response revelation with streaming text and dynamic content loading
+  - [ ] Embedded data visualizations with interactive hover states and click-to-expand
+  - [ ] Response formatting with clear information hierarchy and scannable layouts
+  - [ ] Smart response categorization with expandable sections for different data types
+- [ ] Advanced Users & Edge Cases
+  - [ ] Response customization options with user-preferred formatting styles
+  - [ ] Export options for individual responses in multiple formats (PDF, CSV, PNG)
+  - [ ] Response comparison tools for analyzing trends across multiple queries
+
+#### Conversation History & Bookmarking
+- [ ] User Stories
+  - [ ] As a regular user, I want to quickly find previous conversations so that I can reference past insights
+  - [ ] As a strategic planner, I want to bookmark important insights so that I can easily return to key information
+  - [ ] As a team collaborator, I want to share specific insights so that I can communicate findings with colleagues
+  - [ ] As a busy executive, I want conversation summaries so that I can quickly review key points without re-reading everything
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Conversation sidebar with smart previews and visual conversation threading
+  - [ ] One-click bookmarking with customizable tags and categories
+  - [ ] Share functionality with permission controls and link generation
+  - [ ] Auto-generated conversation summaries with key insight highlighting
+- [ ] Advanced Users & Edge Cases
+  - [ ] Advanced search with natural language queries across conversation history
+  - [ ] Conversation analytics showing usage patterns and most valuable insights
+  - [ ] Bulk operations for managing large conversation archives
+
+#### Conversation Export & Sharing
+- [ ] User Stories
+  - [ ] As a report creator, I want to export conversations as PDFs so that I can include insights in formal presentations
+  - [ ] As a team leader, I want to share specific insights with team members so that I can distribute findings efficiently
+  - [ ] As a compliance officer, I want to export conversations with metadata so that I can maintain audit trails
+  - [ ] As a visual communicator, I want to export charts and visualizations so that I can use them in external presentations
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Export options accessible through context menus with format selection
+  - [ ] Share links with expiration controls and access permissions
+  - [ ] Export preview with formatting options and content selection tools
+  - [ ] Batch export capabilities for multiple conversations or insights
+- [ ] Advanced Users & Edge Cases
+  - [ ] Custom export templates with branding and formatting options
+  - [ ] API access for programmatic export and integration with other tools
+  - [ ] Automated export scheduling for regular reporting needs
+
+### Chat History & Persistence
+
+#### Complete Chat History Access
+- [ ] User Stories
+  - [ ] As a long-term user, I want access to all my historical conversations so that I can track business trends over time
+  - [ ] As a user returning after time away, I want to quickly catch up on recent conversations so that I can resume where I left off
+  - [ ] As a data analyst, I want to analyze my query patterns so that I can optimize how I use the system
+  - [ ] As a security-conscious user, I want to know my data retention policies so that I can make informed decisions about sensitive queries
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Infinite scroll conversation history with intelligent pagination and lazy loading
+  - [ ] Timeline view with date anchors and conversation clustering by time periods
+  - [ ] Quick access to recent conversations with visual recency indicators
+  - [ ] Data usage visualization showing storage consumption and retention timelines
+- [ ] Advanced Users & Edge Cases
+  - [ ] Conversation archiving with compression and storage optimization
+  - [ ] Data export for personal backup with encrypted download options
+  - [ ] Conversation restoration from archives with full fidelity preservation
+
+#### Advanced Search & Discovery
+- [ ] User Stories
+  - [ ] As a knowledge worker, I want to search conversations by keywords so that I can find specific insights quickly
+  - [ ] As a project manager, I want to filter conversations by date range so that I can review project-specific insights
+  - [ ] As a business analyst, I want to search by data source so that I can find all insights from specific systems
+  - [ ] As a team member, I want to discover related conversations so that I can build on previous work
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Universal search with auto-complete and smart suggestions based on conversation content
+  - [ ] Advanced filter panels with date pickers, data source selection, and result type filtering
+  - [ ] Search result highlighting with context snippets and relevance scoring
+  - [ ] Saved search functionality with notification alerts for new matching content
+- [ ] Advanced Users & Edge Cases
+  - [ ] Semantic search capabilities understanding intent beyond exact keyword matches
+  - [ ] Search analytics showing most common queries and result effectiveness
+  - [ ] Cross-conversation insights suggesting related findings across different time periods
+
+#### Conversation Organization & Management
+- [ ] User Stories
+  - [ ] As an organized user, I want to create folders for different projects so that I can keep conversations structured
+  - [ ] As a team collaborator, I want to organize conversations by client or department so that I can maintain clear boundaries
+  - [ ] As a frequent user, I want to star important conversations so that I can access key insights immediately
+  - [ ] As a privacy-conscious user, I want to delete conversations selectively so that I can maintain control over my data
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Drag-and-drop folder organization with visual folder hierarchy
+  - [ ] Star/favorite system with quick access toolbar and priority sorting
+  - [ ] Bulk selection tools for efficient conversation management
+  - [ ] Conversation preview cards with metadata and quick action buttons
+- [ ] Advanced Users & Edge Cases
+  - [ ] Smart folder suggestions based on conversation content and patterns
+  - [ ] Automated organization rules with tag-based sorting and custom criteria
+  - [ ] Conversation merge and split tools for managing complex discussion threads
+
+### Workflow Integration
+
+#### Workflow Discovery & Management
+- [ ] User Stories
+  - [ ] As a new user, I want to see all available workflows so that I can understand what insights are possible
+  - [ ] As a workflow creator, I want to see which workflows are being used most so that I can optimize my automations
+  - [ ] As a business user, I want workflows organized by category so that I can find relevant automations quickly
+  - [ ] As a troubleshooter, I want to see workflow health status so that I can identify issues before they affect my insights
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Workflow gallery with clear categorization and visual workflow representations
+  - [ ] Health status indicators with color coding and detailed status information
+  - [ ] Usage analytics with charts showing workflow popularity and success rates
+  - [ ] Workflow documentation integration with inline help and example queries
+- [ ] Advanced Users & Edge Cases
+  - [ ] Workflow dependency mapping showing interconnected automation chains
+  - [ ] Performance monitoring with execution time tracking and optimization suggestions
+  - [ ] Workflow versioning with rollback capabilities and change history
+
+#### Intelligent Workflow Execution
+- [ ] User Stories
+  - [ ] As a user, I want the system to choose the right workflow for my query so that I don't need to understand technical details
+  - [ ] As a business analyst, I want to see which workflows contributed to my results so that I can understand data sources
+  - [ ] As a power user, I want to manually select workflows when needed so that I can have precise control over execution
+  - [ ] As a performance-conscious user, I want workflows to execute efficiently so that I get results quickly
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Automatic workflow selection with confidence indicators and alternative suggestions
+  - [ ] Execution progress visualization with step-by-step workflow progression
+  - [ ] Result attribution showing which workflows contributed to each insight
+  - [ ] Manual workflow selection with guided workflow picker and compatibility warnings
+- [ ] Advanced Users & Edge Cases
+  - [ ] Workflow chaining with automatic dependency resolution and parallel execution
+  - [ ] Custom workflow parameters with guided input forms and validation
+  - [ ] Workflow execution history with performance metrics and optimization recommendations
+
+#### Error Handling & Recovery
+- [ ] User Stories
+  - [ ] As a user, I want clear error messages when workflows fail so that I can understand what went wrong
+  - [ ] As a system administrator, I want to retry failed workflows so that temporary issues don't block insights
+  - [ ] As a troubleshooter, I want detailed error logs so that I can diagnose and fix workflow issues
+  - [ ] As a business user, I want alternative suggestions when workflows fail so that I can still get the insights I need
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] User-friendly error messages with plain language explanations and suggested actions
+  - [ ] One-click retry functionality with automatic retry for transient failures
+  - [ ] Alternative workflow suggestions when primary workflows fail
+  - [ ] Error state illustrations with helpful visual cues and recovery guidance
+- [ ] Advanced Users & Edge Cases
+  - [ ] Detailed error logs with technical information for debugging
+  - [ ] Error pattern analysis with proactive failure prevention
+  - [ ] Fallback workflow configuration with automatic failover capabilities
+
+### Template & Quick Actions
+
+#### Pre-configured Prompt Templates
+- [ ] User Stories
+  - [ ] As a new user, I want ready-made templates so that I can quickly understand what kinds of insights are possible
+  - [ ] As a role-specific user, I want templates relevant to my job function so that I can focus on pertinent business questions
+  - [ ] As a frequent user, I want to customize templates so that they match my specific business context
+  - [ ] As a team leader, I want to share templates with my team so that we can standardize our analytical approaches
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Template library with role-based categorization and visual template cards
+  - [ ] One-click template application with parameter customization options
+  - [ ] Template preview with example results and expected data sources
+  - [ ] Template search and filtering with tag-based organization
+- [ ] Advanced Users & Edge Cases
+  - [ ] Template marketplace with community-contributed templates and ratings
+  - [ ] Template analytics showing usage patterns and effectiveness metrics
+  - [ ] Template versioning with update notifications and migration assistance
+
+#### Custom Template Creation
+- [ ] User Stories
+  - [ ] As a power user, I want to create custom templates so that I can standardize my frequently used queries
+  - [ ] As a team lead, I want to create templates for my team so that we can maintain consistent analytical approaches
+  - [ ] As a consultant, I want to create client-specific templates so that I can deliver consistent value across engagements
+  - [ ] As a business owner, I want to create templates for different business scenarios so that I can quickly assess various situations
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Template builder with drag-and-drop query construction and parameter definition
+  - [ ] Template testing interface with preview functionality and validation
+  - [ ] Template sharing controls with permission settings and team distribution
+  - [ ] Template organization with personal and shared template libraries
+- [ ] Advanced Users & Edge Cases
+  - [ ] Template scripting with conditional logic and dynamic parameter handling
+  - [ ] Template performance optimization with execution time analysis
+  - [ ] Template collaboration with version control and collaborative editing
+
+#### Contextual Suggestions & Follow-ups
+- [ ] User Stories
+  - [ ] As a curious user, I want to see suggested follow-up questions so that I can explore insights more deeply
+  - [ ] As a strategic thinker, I want suggestions based on my query patterns so that I can discover new analytical approaches
+  - [ ] As a time-pressed executive, I want relevant quick actions so that I can get comprehensive insights efficiently
+  - [ ] As a data explorer, I want contextual suggestions based on my current results so that I can pursue interesting patterns
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Smart suggestion bubbles appearing contextually after query results
+  - [ ] Personalized suggestion learning based on user behavior and preferences
+  - [ ] Quick action buttons for common follow-up queries and data manipulations
+  - [ ] Suggestion categories with visual grouping and priority ordering
+- [ ] Advanced Users & Edge Cases
+  - [ ] AI-powered insight discovery with proactive anomaly detection and trend identification
+  - [ ] Cross-data source suggestion engine recommending complementary analyses
+  - [ ] Suggestion feedback system with learning from user interactions and preferences
+
+### Connection Visualization
+
+#### Data Source Status & Health Monitoring
+- [ ] User Stories
+  - [ ] As a system administrator, I want to see all connected data sources at a glance so that I can monitor system health
+  - [ ] As a business user, I want to know which data sources are available so that I can understand what insights are possible
+  - [ ] As a troubleshooter, I want detailed connection status so that I can quickly identify and resolve issues
+  - [ ] As a security officer, I want to monitor data source access so that I can ensure proper security governance
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Connection dashboard with status indicators and visual health monitoring
+  - [ ] Real-time status updates with automatic refresh and notification alerts
+  - [ ] Connection testing tools with detailed diagnostic information
+  - [ ] Visual connection topology showing data flow and integration relationships
+- [ ] Advanced Users & Edge Cases
+  - [ ] Historical connection reliability metrics with uptime tracking and performance trends
+  - [ ] Automated connection healing with retry mechanisms and failover procedures
+  - [ ] Connection security auditing with access logging and compliance reporting
+
+#### Response Attribution & Transparency
+- [ ] User Stories
+  - [ ] As a data-conscious user, I want to see which data sources contributed to each response so that I can assess reliability
+  - [ ] As an analyst, I want to understand data freshness so that I can make informed decisions based on currency
+  - [ ] As a business user, I want to see data source confidence levels so that I can weight insights appropriately
+  - [ ] As a compliance officer, I want to track data lineage so that I can maintain audit trails
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Data source badges with hover details and contribution percentages
+  - [ ] Response metadata showing data freshness and confidence indicators
+  - [ ] Visual data lineage with interactive flow diagrams and source tracing
+  - [ ] Attribution timeline showing when data was last updated and processed
+- [ ] Advanced Users & Edge Cases
+  - [ ] Detailed provenance tracking with complete data transformation history
+  - [ ] Data quality scoring with reliability metrics and accuracy assessments
+  - [ ] Source credibility weighting with user-defined trust levels and automatic adjustments
+
+#### Connection Management & Configuration
+- [ ] User Stories
+  - [ ] As a system administrator, I want to add new data sources easily so that I can expand analytical capabilities
+  - [ ] As a business user, I want to configure which data I share so that I can maintain privacy while getting insights
+  - [ ] As a team manager, I want to manage team access to different data sources so that I can control information flow
+  - [ ] As a security officer, I want to monitor and audit data source access so that I can ensure compliance
+
+##### UX/UI Considerations
+- [ ] Core Experience
+  - [ ] Connection wizard with step-by-step guidance and validation
+  - [ ] Data sharing controls with granular permission settings and preview options
+  - [ ] Access management interface with role-based permissions and audit trails
+  - [ ] Connection health monitoring with automated alerts and resolution guidance
+- [ ] Advanced Users & Edge Cases
+  - [ ] Advanced configuration options with custom API endpoints and authentication methods
+  - [ ] Bulk connection management with import/export capabilities and template sharing
+  - [ ] Connection performance optimization with caching strategies and query optimization
