@@ -1,0 +1,1116 @@
+<goal>
+Create a comprehensive technical specification document for a software development project that will serve as direct input for planning and code generation AI systems. The specification must be precise, structured, and provide actionable implementation guidance covering all aspects of the system from architecture to deployment.
+</goal>
+
+<format>
+The output should be a detailed technical specification in markdown format with the following structure:
+
+# {Project Name} Technical Specification
+
+## 1. Executive Summary
+- Project overview and objectives
+- Key technical decisions and rationale
+- High-level architecture diagram
+- Technology stack recommendations
+
+## 2. System Architecture
+### 2.1 Architecture Overview
+- System components and their relationships
+- Data flow diagrams
+- Infrastructure requirements
+
+### 2.2 Technology Stack
+- Frontend technologies and frameworks
+- Backend technologies and frameworks
+- Database and storage solutions
+- Third-party services and APIs
+
+## 3. Feature Specifications
+For each major feature:
+### 3.X {Feature Name}
+- User stories and acceptance criteria
+- Technical requirements and constraints
+- Detailed implementation approach
+- User flow diagrams
+- API endpoints (if applicable)
+- Data models involved
+- Error handling and edge cases
+- Performance considerations
+
+## 4. Data Architecture
+### 4.1 Data Models
+For each entity:
+- Entity definition and purpose
+- Attributes (name, type, constraints, defaults)
+- Relationships and associations
+- Indexes and optimization strategies
+
+### 4.2 Data Storage
+- Database selection and rationale
+- Data persistence strategies
+- Caching mechanisms
+- Backup and recovery procedures
+
+## 5. API Specifications
+### 5.1 Internal APIs
+For each endpoint:
+- Endpoint URL and HTTP method
+- Request parameters and body schema
+- Response schema and status codes
+- Authentication and authorization
+- Rate limiting and throttling
+- Example requests and responses
+
+### 5.2 External Integrations
+For each integration:
+- Service description and purpose
+- Authentication mechanisms
+- API endpoints and usage
+- Error handling and fallback strategies
+- Data synchronization approaches
+
+## 6. Security & Privacy
+### 6.1 Authentication & Authorization
+- Authentication mechanism and flow
+- Authorization strategies and role definitions
+- Session management
+- Token handling and refresh strategies
+
+### 6.2 Data Security
+- Encryption strategies (at rest and in transit)
+- PII handling and protection
+- Compliance requirements (GDPR, CCPA, etc.)
+- Security audit procedures
+
+### 6.3 Application Security
+- Input validation and sanitization
+- OWASP compliance measures
+- Security headers and policies
+- Vulnerability management
+
+## 7. User Interface Specifications
+### 7.1 Design System
+- Visual design principles
+- Brand guidelines and personality
+- Component library structure
+- Responsive design approach
+- Accessibility standards (WCAG compliance)
+- Platform-specific UI considerations
+
+### 7.2 Design Foundations
+#### 7.2.1 Color System
+- Primary, secondary, and accent colors (hex/rgb values)
+- Semantic colors (success, warning, error, info)
+- Neutral/grayscale palette
+- Dark mode considerations
+- Color accessibility ratios
+
+#### 7.2.2 Typography
+- Font families (primary, secondary, monospace)
+- Type scale (font sizes and line heights)
+- Font weights and styles
+- Responsive typography rules
+- Text color treatments
+
+#### 7.2.3 Spacing & Layout
+- Base unit system (4px, 8px grid, etc.)
+- Spacing scale (xs, sm, md, lg, xl values)
+- Container widths and breakpoints
+- Grid system specifications
+- Component spacing patterns
+
+#### 7.2.4 Interactive Elements
+- Button styles and states
+- Form field specifications
+- Animation timing and easing
+- Hover/focus/active states
+- Loading and transition patterns
+
+#### 7.2.5 Component Specifications
+- Design tokens structure
+- Core component variants
+- Composition patterns
+- State visualizations
+- Platform-specific adaptations
+
+### 7.3 User Experience Flows
+- Key user journeys with wireframes/mockups
+- Navigation structure
+- State management and transitions
+- Error states and user feedback
+- Loading and empty states
+
+## 8. Infrastructure & Deployment
+### 8.1 Infrastructure Requirements
+- Hosting environment specifications
+- Server requirements and configuration
+- Network architecture
+- Storage requirements
+
+### 8.2 Deployment Strategy
+- CI/CD pipeline configuration
+- Environment management (dev, staging, production)
+- Deployment procedures and rollback strategies
+- Configuration management
+
+</format>
+
+<warnings-and-guidelines>
+Before creating the specification:
+
+1. **Analyze the project comprehensively** in <brainstorm> tags, considering:
+  - System architecture and infrastructure requirements
+  - Core functionality and feature breakdown
+  - Data models and storage architecture
+  - API and integration specifications
+  - Security, privacy, and compliance requirements
+  - Performance and scalability considerations
+  - User interface and experience specifications
+  - Third-party services and external dependencies
+  - Deployment and operational requirements
+  - Quality assurance and monitoring strategy
+
+2. **For each area, ensure you**:
+  - Provide detailed breakdown of requirements and implementation approaches
+  - Identify potential challenges, risks, and mitigation strategies
+  - Consider edge cases, error scenarios, and recovery mechanisms
+  - Propose alternative solutions where applicable
+
+3. **Critical considerations**:
+  - Break down complex features into detailed user flows and system interactions
+  - Identify areas requiring clarification or having technical constraints
+  - Consider platform-specific requirements (web, mobile, desktop)
+  - Address non-functional requirements (performance, security, accessibility)
+
+4. **Quality guidelines**:
+  - Be technology-agnostic unless specific technologies are mandated in the PRD
+  - Provide concrete examples and clear interfaces between components
+  - Include specific implementation guidance without unnecessary jargon
+  - Focus on completeness and actionability for development teams
+  - Consider both technical and business constraints
+
+5. **Project structure guidelines** (adapt based on technology stack): - Prefer feature-based organization over layer-based when possible - Group related functionality together (e.g., components, hooks, utilities for a feature) - Separate concerns clearly (business logic, UI, data access) - Consider these common patterns: - `/features` or `/modules` for feature-based grouping - `/shared` or `/common` for cross-cutting concerns - `/lib` or `/utils` for utilities and helpers - `/services` for external integrations - Document the chosen structure rationale in the specification - Include example directory trees for complex features 
+
+6. **When specifying project structure**: - Show concrete examples with file paths - Explain the reasoning for the chosen organization - Highlight where shared code should live - Indicate naming conventions (camelCase, PascalCase, kebab-case) - Specify file naming patterns (e.g., `*.test.ts`, `*.spec.ts`)
+</warnings-and-guidelines>
+
+<context>
+You are an expert software architect creating technical specifications that will be used as direct input for planning and code generation AI systems. The specification must translate business requirements from a Product Requirements Document (PRD) into comprehensive technical documentation that development teams can execute against.
+
+The project request will be provided here:
+
+<project_request>
+## Features (MVP)
+
+### Authentication & Role-Based Access Control
+A secure user authentication system with three-tier permissions (Admin/Member/Viewer) and granular workflow access control. Admins can manage team members and configure which workflows each role can access.
+
+#### Tech Involved
+* Clerk for authentication and user management
+* Prisma ORM with role-based data models
+* Supabase Postgres for user profiles, roles, and workflow permissions
+* NextJS middleware for permission enforcement
+
+#### Main Requirements
+* Three-tier role system (Admin/Member/Viewer) with different capabilities
+* Granular workflow access permissions per user/role
+* Admin interface for managing team members and workflow assignments
+* Permission-based UI rendering and API endpoint protection
+
+### Private Chat Interface with Selective Sharing
+Individual chat interfaces where users only see their own conversations and workflow results, with optional admin visibility for team oversight and support.
+
+#### Tech Involved
+* NextJS with React for personalized chat components
+* Supabase Row Level Security (RLS) for data isolation
+* Server Actions for user-specific message handling
+* Prisma with user-scoped queries for chat history
+
+#### Main Requirements
+* User-isolated chat conversations and workflow results
+* Admin oversight capabilities for support and monitoring
+* Personal chat history with user-specific search and organization
+* Secure data isolation between team members
+
+### Workflow Permission System & Execution Engine
+Advanced workflow management with per-user access controls, parameter handling, and execution tracking. Users can only see and execute workflows they have permission to access.
+
+#### Tech Involved
+* n8n REST API for workflow discovery and execution
+* Prisma for workflow permissions and parameter schemas
+* NextJS API routes for webhook endpoints and parameter validation
+* Server Actions for permission-checked workflow execution
+
+#### Main Requirements
+* Per-user workflow visibility and execution permissions
+* Dynamic workflow parameter collection and validation
+* Webhook handling for workflow completion with user-specific updates
+* Workflow execution audit trail with permission context
+
+### Admin Dashboard & Team Management
+Comprehensive admin interface for managing team members, assigning workflow permissions, monitoring usage, and configuring organizational settings.
+
+#### Tech Involved
+* NextJS admin pages with role-based routing
+* Prisma for team management operations
+* Supabase for admin analytics and reporting
+* Role-based component rendering and data access
+
+#### Main Requirements
+* Team member invitation and role assignment interface
+* Workflow permission management with bulk assignment capabilities
+* Usage monitoring and audit log viewing for admins
+* Organizational settings and n8n connection management
+
+## System Diagram
+
+```mermaid
+graph TB
+    subgraph "Frontend (NextJS)"
+        UI[Personal Chat Interface]
+        ADMIN[Admin Dashboard]
+        PERM[Permission Manager]
+        PARAMS[Workflow Parameters UI]
+    end
+    
+    subgraph "Backend (NextJS Server Actions + API Routes)"
+        AUTH[Authentication & RBAC]
+        CHAT[Private Chat Handler]
+        WORK[Permission-Checked Workflow Executor]
+        WEBHOOK[User-Specific Webhook Handler]
+        AUDIT[Audit & Usage Logger]
+        TEAM[Team Management API]
+    end
+    
+    subgraph "Data Layer"
+        SUPABASE[(Supabase Postgres with RLS)]
+        PRISMA[Prisma ORM]
+        PERMISSIONS[Permission Matrix]
+    end
+    
+    subgraph "External Services"
+        CLERK[Clerk Auth with Roles]
+        N8N[n8n Instance]
+        VERCEL[Vercel Deployment]
+    end
+    
+    UI --> CHAT
+    ADMIN --> TEAM
+    PERM --> PERMISSIONS
+    PARAMS --> WORK
+    
+    AUTH --> CLERK
+    CHAT --> PRISMA
+    WORK --> N8N
+    WEBHOOK --> WORK
+    AUDIT --> PRISMA
+    TEAM --> PERMISSIONS
+    
+    PRISMA --> SUPABASE
+    PERMISSIONS --> SUPABASE
+    N8N -.->|User-Specific Webhook| WEBHOOK
+    
+    VERCEL -.-> UI
+    VERCEL -.-> AUTH
+    VERCEL -.-> CHAT
+    VERCEL -.-> WORK
+    VERCEL -.-> WEBHOOK
+```
+
+## Database Schema Considerations
+
+### Core Permission Models
+```prisma
+model User {
+  id          String   @id
+  clerkId     String   @unique
+  email       String
+  role        Role     @default(MEMBER)
+  orgId       String
+  // ... other fields
+}
+
+model WorkflowPermission {
+  id          String   @id
+  userId      String
+  workflowId  String
+  canExecute  Boolean  @default(false)
+  canView     Boolean  @default(true)
+  // ... other fields
+}
+
+model ChatMessage {
+  id          String   @id
+  userId      String   // RLS policy on this field
+  content     String
+  workflowId  String?
+  executionId String?
+  // ... other fields
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+  VIEWER
+}
+```
+
+## Technical Implementation Guidance
+
+### Role-Based Access Control Implementation
+* **Clerk Metadata**: Store user roles in Clerk's user metadata for consistent access across sessions
+* **Supabase RLS**: Implement Row Level Security policies to ensure users only see their own data
+* **Middleware Protection**: NextJS middleware to check permissions before API routes and page access
+* **UI Conditional Rendering**: Show/hide features based on user role and workflow permissions
+
+### Workflow Permission Management
+* **Permission Matrix**: Database table mapping users to workflows with specific permissions
+* **Dynamic Workflow Discovery**: Filter n8n workflow list based on user permissions before display
+* **Parameter Schema Storage**: Store workflow parameter definitions to build dynamic forms
+* **Execution Validation**: Double-check permissions server-side before workflow execution
+
+### Webhook Configuration for n8n
+**n8n Webhook Setup Steps:**
+1. **Create Webhook Node**: Add HTTP Request node at end of workflows
+2. **Dynamic URL Generation**: Use expression `{{$json.webhookUrl}}` where webhookUrl is passed as parameter
+3. **Payload Structure**: Send back execution ID, status, results, and user context
+4. **Authentication**: Include shared secret or API key for webhook verification
+
+**Example n8n Webhook Payload:**
+```json
+{
+  "executionId": "{{$execution.id}}",
+  "workflowId": "{{$workflow.id}}",
+  "userId": "{{$json.userId}}",
+  "status": "success",
+  "results": "{{$json.results}}",
+  "timestamp": "{{$now}}"
+}
+```
+
+### Parameter Handling System
+* **Schema Discovery**: Query n8n API to get workflow parameter definitions
+* **Dynamic Form Generation**: Build React forms based on parameter schemas
+* **Type Validation**: Client and server-side validation for parameter types
+* **Context Integration**: Merge chat context with explicit parameters before execution
+
+### Private Chat Architecture
+* **User Isolation**: All chat queries filtered by authenticated user ID
+* **Admin Override**: Special admin queries to view user conversations for support
+* **Execution Results**: Store workflow results linked to specific users and conversations
+* **Search Scoping**: User-specific search that only returns their own conversations
+
+## n8n Integration Requirements
+
+### Webhook Endpoint Setup
+* **Endpoint**: `POST /api/webhooks/n8n/[executionId]`
+* **Authentication**: Verify webhook signature or shared secret
+* **User Context**: Include user ID in webhook payload to route results correctly
+* **Status Updates**: Update execution status and notify specific user via real-time updates
+
+### Parameter Passing to n8n
+* **Combined Context**: Merge chat conversation context with explicit workflow parameters
+* **Parameter Validation**: Validate required parameters before workflow execution
+* **Error Handling**: Return clear parameter validation errors to users
+* **Default Values**: Support default parameter values from workflow definitions
+
+
+</project_request>
+
+User specific tech stack requests here:
+
+<tech-stack>
+NextJS (frontend)
+NextJS Server Actions (backend)
+Supabase (Postgres DB)
+Prisma ORM
+Clerk Auth
+Deployment on Vercel
+Zustand for state management
+TailwindCSS for styling
+Framer Motion for Animation
+</tech-stack>
+
+Project design considerations will be provided here:
+
+<design-considerations>
+<aesthetics>
+Bold simplicity with intuitive navigation creating frictionless experiences
+Breathable whitespace complemented by strategic color accents for visual hierarchy
+Strategic negative space calibrated for cognitive breathing room and content prioritization
+Systematic color theory applied through subtle gradients and purposeful accent placement
+Typography hierarchy utilizing weight variance and proportional scaling for information architecture
+Visual density optimization balancing information availability with cognitive load management
+Motion choreography implementing physics-based transitions for spatial continuity
+Accessibility-driven contrast ratios paired with intuitive navigation patterns ensuring universal usability
+Feedback responsiveness via state transitions communicating system status with minimal latency
+Content-first layouts prioritizing user objectives over decorative elements for task efficiency
+</aesthetics>
+<app-design-system>
+## Color Palette
+
+### Primary Colors
+- **Primary Deep Blue** - #1E293B (Primary brand color for executive trust and professionalism)
+- **Primary White** - #FFFFFF (Clean surfaces and content backgrounds)
+- **Primary Slate** - #F8FAFC (Primary background color for breathable whitespace)
+
+### Secondary Colors
+- **Secondary Blue** - #3B82F6 (Interactive elements and hover states)
+- **Secondary Light Blue** - #DBEAFE (Subtle backgrounds and selected states)
+- **Secondary Charcoal** - #475569 (Secondary text and subdued elements)
+
+### Accent Colors
+- **Accent Emerald** - #059669 (Success indicators and positive insights)
+- **Accent Purple** - #7C3AED (AI-powered features and intelligent actions)
+- **Accent Amber** - #F59E0B (Warnings and attention-requiring insights)
+
+### Functional Colors
+- **Success Green** - #10B981 (Successful operations and positive metrics)
+- **Error Red** - #EF4444 (Errors and critical alerts)
+- **Warning Orange** - #F97316 (Caution states and important notifications)
+- **Info Blue** - #06B6D4 (Informational content and neutral insights)
+- **Neutral Light** - #E2E8F0 (Borders and subtle dividers)
+- **Neutral Medium** - #94A3B8 (Secondary text and disabled states)
+- **Neutral Dark** - #334155 (Primary text and high-contrast elements)
+
+### Background Colors
+- **Background Pure** - #FFFFFF (Card backgrounds and content areas)
+- **Background Soft** - #F8FAFC (Main application background)
+- **Background Subtle** - #F1F5F9 (Secondary sections and panels)
+- **Background Dark** - #0F172A (Dark mode primary background)
+
+## Typography
+
+### Font Family
+- **Primary Font**: Inter (Web primary)
+- **Secondary Font**: SF Pro Text (iOS) / Roboto (Android/Web fallback)
+- **Monospace Font**: JetBrains Mono (Code and data display)
+
+### Font Weights
+- **Light**: 300
+- **Regular**: 400
+- **Medium**: 500
+- **Semibold**: 600
+- **Bold**: 700
+
+### Text Styles
+
+#### Headings
+- **H1**: 32px/40px, Bold, Letter spacing -0.5px
+  *Used for main dashboard titles and primary headers*
+  
+- **H2**: 28px/36px, Semibold, Letter spacing -0.3px
+  *Used for section headers and widget titles*
+  
+- **H3**: 24px/32px, Semibold, Letter spacing -0.2px
+  *Used for subsection headers and modal titles*
+  
+- **H4**: 20px/28px, Medium, Letter spacing -0.1px
+  *Used for card headers and component titles*
+
+#### Body Text
+- **Body Large**: 18px/28px, Regular, Letter spacing 0px
+  *Primary content and conversation text*
+  
+- **Body**: 16px/24px, Regular, Letter spacing 0px
+  *Standard UI text and descriptions*
+  
+- **Body Small**: 14px/20px, Regular, Letter spacing 0.05px
+  *Secondary information and metadata*
+
+#### Special Text
+- **Caption**: 12px/16px, Medium, Letter spacing 0.1px
+  *Timestamps, labels, and small annotations*
+  
+- **Button Text**: 16px/24px, Medium, Letter spacing 0.05px
+  *Interactive elements and CTAs*
+  
+- **Link Text**: 16px/24px, Medium, Letter spacing 0px, Secondary Blue
+  *Clickable text and navigation elements*
+  
+- **Data Text**: 16px/20px, Medium, Letter spacing 0px, JetBrains Mono
+  *Numbers, metrics, and data visualization labels*
+
+## Component Styling
+
+### Buttons
+
+#### Primary Button
+- **Background**: Primary Deep Blue (#1E293B)
+- **Text**: Primary White (#FFFFFF)
+- **Height**: 44px
+- **Corner Radius**: 8px
+- **Padding**: 24px horizontal, 12px vertical
+- **Hover**: Background darkens to #0F172A
+
+#### Secondary Button
+- **Border**: 1.5px Secondary Blue (#3B82F6)
+- **Text**: Secondary Blue (#3B82F6)
+- **Background**: Transparent
+- **Height**: 44px
+- **Corner Radius**: 8px
+- **Padding**: 24px horizontal, 12px vertical
+- **Hover**: Background Secondary Light Blue (#DBEAFE)
+
+#### Accent Button
+- **Background**: Accent Purple (#7C3AED)
+- **Text**: Primary White (#FFFFFF)
+- **Height**: 44px
+- **Corner Radius**: 8px
+- **Padding**: 24px horizontal, 12px vertical
+- **Icon**: Optional 20px icon with 8px spacing
+
+#### Text Button
+- **Text**: Secondary Blue (#3B82F6)
+- **Background**: None
+- **Height**: 40px
+- **Padding**: 16px horizontal
+- **Hover**: Text color darkens to Primary Deep Blue
+
+### Cards
+
+#### Standard Card
+- **Background**: Background Pure (#FFFFFF)
+- **Shadow**: Y-offset 1px, Blur 3px, Color #0F172A at 8% opacity
+- **Corner Radius**: 12px
+- **Padding**: 24px
+- **Border**: 1px Neutral Light (#E2E8F0)
+
+#### Elevated Card
+- **Background**: Background Pure (#FFFFFF)
+- **Shadow**: Y-offset 4px, Blur 12px, Color #0F172A at 12% opacity
+- **Corner Radius**: 16px
+- **Padding**: 32px
+- **Border**: None
+
+#### Insight Card
+- **Background**: Background Pure (#FFFFFF)
+- **Shadow**: Y-offset 2px, Blur 8px, Color Accent Purple at 15% opacity
+- **Corner Radius**: 12px
+- **Padding**: 20px
+- **Border**: 1px Accent Purple (#7C3AED) at 20% opacity
+- **Accent**: 4px left border in Accent Purple
+
+### Input Fields
+
+#### Text Input
+- **Height**: 48px
+- **Corner Radius**: 8px
+- **Border**: 1px Neutral Light (#E2E8F0)
+- **Active Border**: 2px Secondary Blue (#3B82F6)
+- **Focus Shadow**: 0 0 0 3px Secondary Blue at 20% opacity
+- **Background**: Background Pure (#FFFFFF)
+- **Text**: Neutral Dark (#334155)
+- **Placeholder**: Neutral Medium (#94A3B8)
+- **Padding**: 16px horizontal
+
+#### Search Input
+- **Height**: 52px
+- **Corner Radius**: 26px (pill shape)
+- **Border**: 1px Neutral Light (#E2E8F0)
+- **Background**: Background Soft (#F8FAFC)
+- **Icon**: 20px search icon, Neutral Medium color
+- **Padding**: 20px horizontal, 16px left of icon
+
+#### Chat Input
+- **Min Height**: 56px (expandable)
+- **Corner Radius**: 12px
+- **Border**: 1px Neutral Light (#E2E8F0)
+- **Active Border**: 2px Accent Purple (#7C3AED)
+- **Background**: Background Pure (#FFFFFF)
+- **Padding**: 16px horizontal, 16px vertical
+- **Send Button**: Integrated 36px Accent Purple button
+
+### Icons
+
+#### Size Scale
+- **Micro Icons**: 16px × 16px (inline text icons)
+- **Small Icons**: 20px × 20px (buttons and form elements)
+- **Standard Icons**: 24px × 24px (navigation and general use)
+- **Large Icons**: 32px × 32px (feature highlights)
+- **Hero Icons**: 48px × 48px (empty states and major actions)
+
+#### Color Application
+- **Primary Interactive**: Secondary Blue (#3B82F6)
+- **Secondary/Inactive**: Neutral Medium (#94A3B8)
+- **AI Features**: Accent Purple (#7C3AED)
+- **Success States**: Success Green (#10B981)
+- **Warning States**: Warning Orange (#F97316)
+
+## Spacing System
+
+- **2px** - Micro spacing (icon-text gaps)
+- **4px** - Minimal spacing (tight element relationships)
+- **8px** - Small spacing (component internal padding)
+- **16px** - Default spacing (standard margins and gaps)
+- **24px** - Medium spacing (section separation)
+- **32px** - Large spacing (major component separation)
+- **48px** - Extra large spacing (page section breaks)
+- **64px** - Maximum spacing (major layout divisions)
+
+## Motion & Animation
+
+### Transition Timings
+- **Micro Interactions**: 150ms, ease-out
+- **Standard Transitions**: 250ms, ease-in-out
+- **Complex Animations**: 400ms, custom cubic-bezier(0.25, 0.46, 0.45, 0.94)
+- **Page Transitions**: 300ms, ease-in-out
+- **Loading States**: 1200ms, linear (for spinners and progress)
+
+### Animation Principles
+- **Slide In**: translateY(-8px) to translateY(0) for tooltips and dropdowns
+- **Fade In**: opacity 0 to 1 with scale(0.95) to scale(1)
+- **Button Press**: scale(0.98) for 100ms on click
+- **Hover Lift**: translateY(0) to translateY(-2px) for cards
+- **AI Thinking**: Subtle pulse animation for processing states
+
+## Dark Mode Variants
+
+### Background Colors
+- **Dark Primary**: #0F172A (main background)
+- **Dark Secondary**: #1E293B (card backgrounds)
+- **Dark Elevated**: #334155 (elevated surfaces)
+
+### Text Colors
+- **Dark Text Primary**: #F8FAFC (high contrast text)
+- **Dark Text Secondary**: #CBD5E1 (secondary text)
+- **Dark Text Muted**: #94A3B8 (captions and metadata)
+
+### Interactive Colors
+- **Dark Primary Blue**: #60A5FA (adjusted for contrast)
+- **Dark Accent Purple**: #A78BFA (AI features in dark mode)
+- **Dark Success**: #34D399 (success states)
+- **Dark Error**: #F87171 (error states)
+
+### Component Adjustments
+- **Card Shadows**: Eliminated in dark mode, replaced with subtle borders
+- **Input Backgrounds**: #1E293B with #475569 borders
+- **Button Variants**: Adjusted opacity and contrast for accessibility
+
+## Accessibility Standards
+
+- **Contrast Ratios**: Minimum 4.5:1 for normal text, 3:1 for large text
+- **Focus Indicators**: 3px outline in brand colors with sufficient contrast
+- **Motion Preferences**: Respect `prefers-reduced-motion` system setting
+- **Touch Targets**: Minimum 44px × 44px for interactive elements
+- **Screen Reader**: Semantic HTML and ARIA labels for complex interactions
+
+</app-design-system>
+<app-screen-states>
+## Authentication & User Management
+
+### Screen 1: Landing/Welcome
+#### Screen 1 State 1: Initial Landing
+* Clean hero section with dark gradient background (#0F0F14 to #1A1A1F) featuring the app's value proposition
+* Animated floating data visualization elements in muted secondary purple (#A78BFA) with 60% opacity
+* Centered CTA button with primary gradient (#8B5CF6 to #EC4899) and subtle glow effect on hover
+* Minimalist navigation with Ghost buttons for "Sign In" positioned top-right
+* Typography uses H1 (32px/40px Bold) for main headline in Primary Light (#F8F9FA)
+* Micro-animations: floating elements drift subtly on a 4-second loop, CTA button scales 1.02x on hover with 200ms cubic-bezier transition
+* Progressive disclosure: Secondary value props appear with 400ms staggered fade-in after hero loads
+
+#### Screen 1 State 2: Sign Up Form Focus
+* Modal overlay with backdrop blur (rgba(0, 0, 0, 0.7)) and glass morphism card centered
+* Card background: rgba(26, 26, 31, 0.7) with backdrop-filter: blur(10px) and border 1px solid rgba(255, 255, 255, 0.1)
+* Email input field with floating label animation - label moves from placeholder to top with 150ms ease-out
+* Password field with real-time strength indicator using color progression from Error Red (#EF4444) to Success Green (#10B981)
+* Visual feedback: Input borders transition to Secondary Purple (#8B5CF6) on focus with 3px shadow glow
+* OAuth buttons with brand icons positioned prominently below form fields
+* Error states show beneath inputs with slide-down animation and Error Red text
+* Success state triggers celebration micro-animation with scale pulse on submit button
+
+### Screen 2: Multi-Factor Authentication Setup
+#### Screen 2 State 1: MFA Method Selection
+* Clean interface with three card options: SMS, Authenticator App, and Backup Codes
+* Each card uses standard card styling (#1A1A1F background) with subtle hover elevation shadow
+* Selected card gains Secondary Purple border with gentle glow effect
+* Clear icons (24px) for each method with Accent Teal highlights on selection
+* Progress indicator at top shows "Step 2 of 4" with gradient progress bar
+* Typography uses H3 (24px/32px Semibold) for method names, Body text for descriptions
+* Smooth transitions between selection states with 200ms cubic-bezier easing
+
+#### Screen 2 State 2: QR Code Generation (Authenticator App)
+* Centered QR code with subtle border and background highlight for contrast
+* Backup codes displayed in monospace font (JetBrains Mono) in code block styling
+* Copy buttons with success state feedback - icon changes to checkmark with Success Green
+* Step-by-step instructions with numbered list using consistent spacing (16px between items)
+* "Continue" button remains disabled until user confirms setup completion
+* Loading state while generating codes shows skeleton animation with pulse effect
+
+### Screen 3: n8n Instance Connection
+#### Screen 3 State 1: Connection Method Selection
+* Two-column layout comparing API Key vs OAuth connection methods
+* Each method presented in card format with pros/cons lists
+* Visual comparison table with Feature columns and checkmark/x indicators
+* Recommended badge on OAuth option using gradient accent styling
+* Connection security explanation with Info Blue (#3B82F6) accent and information icon
+* Typography hierarchy: H2 for main title, H4 for method names, Body for descriptions
+
+#### Screen 3 State 2: API Key Input & Testing
+* Secure input field with show/hide toggle for API key visibility
+* Connection endpoint field with URL validation and format hints
+* Real-time connection testing with three states:
+  - Idle: neutral border color
+  - Testing: Secondary Purple border with loading spinner
+  - Success: Success Green border with checkmark icon
+  - Error: Error Red border with specific error message
+* Connection details expandable section showing permissions requested
+* Test results displayed in code block format with syntax highlighting
+* Progress through connection wizard shown with visual stepper component
+
+#### Screen 3 State 3: Connection Success
+* Full-screen success state with celebration animation
+* Large checkmark icon with Success Green color and scale-in animation
+* Connection summary showing endpoint, permissions, and timestamp
+* Next steps guidance with clear navigation to team setup
+* Background confetti animation using brand colors with 3-second duration
+* Primary gradient button for "Continue to Team Setup" with forward arrow icon
+
+### Screen 4: Team Access & Permissions Management
+#### Screen 4 State 1: Team Overview Dashboard
+* Header section with team member count and add member CTA
+* Member list with avatar, name, role, and last active information
+* Role badges using tag styling with role-specific colors (Admin: Secondary Purple, Member: Neutral 400)
+* Quick actions menu accessible via three-dot icon with dropdown animation
+* Bulk selection checkboxes with select-all functionality in header
+* Search and filter bar with real-time filtering results
+* Empty state illustration when no team members exist
+
+#### Screen 4 State 2: Invite Team Member Flow
+* Modal with email input supporting multiple addresses (comma-separated)
+* Role selection radio buttons with detailed permission descriptions
+* Permission matrix showing what each role can access in expandable sections
+* Preview of invitation email with customization options
+* Batch invitation support with drag-and-drop CSV upload area
+* Success state shows sent invitations with tracking status
+* Pending invitations section with resend/cancel options
+
+#### Screen 4 State 3: Permission Management Detail
+* Detailed permission grid with toggle switches for granular control
+* Visual hierarchy showing system, team, and individual permissions
+* Inheritance indicators showing which permissions cascade from roles
+* Audit log sidebar showing recent permission changes
+* Custom role creation with permission template starting points
+* Save/cancel actions fixed at bottom with unsaved changes warning
+
+### Screen 5: Workflow Access Configuration
+#### Screen 5 State 1: Workflow Library Overview
+* Grid layout of workflow cards with preview thumbnails and descriptions
+* Category tabs with counts showing available workflows per category
+* Master toggle for "Enable All" with confirmation modal for bulk changes
+* Search bar with autocomplete suggestions based on workflow names and descriptions
+* Filter sidebar with categories, status, and usage frequency options
+* Workflow cards show enable/disable toggle with immediate visual feedback
+
+#### Screen 5 State 2: Individual Workflow Configuration
+* Detailed workflow view with flow diagram visualization
+* Enable toggle with detailed explanation of chat integration
+* Test execution panel with sample query input and expected output preview
+* Dependencies section showing related workflows with connection lines
+* Usage analytics showing execution frequency and success rates
+* Advanced settings expandable section for timeout and retry configurations
+* Save state persists across navigation with draft indicator
+
+#### Screen 5 State 3: Workflow Testing Interface
+* Split-screen layout with query input on left, results on right
+* Live execution monitoring with step-by-step progress visualization
+* Result formatting preview showing how data appears in chat
+* Error simulation with various failure scenarios and error message testing
+* Performance metrics showing execution time and resource usage
+* Success state confirmation before enabling for chat access
+
+## Chat Interface
+
+### Screen 6: Main Chat Interface
+#### Screen 6 State 1: Empty Chat State
+* Clean centered welcome message with app branding
+* Suggested starter queries displayed as clickable cards below welcome
+* Input field with smart placeholder text that rotates through examples
+* Sidebar showing recent conversations (if any) with minimal visual hierarchy
+* Onboarding hints appear as subtle tooltips on first visit
+* Voice input button with microphone icon and animation state when listening
+* Template suggestions organized by business function with visual categories
+
+#### Screen 6 State 2: Active Conversation
+* Message bubbles with distinct styling for user vs. system responses
+* User messages: Right-aligned with Primary Surface (#1A1A1F) background
+* System responses: Left-aligned with gradient accent border and Primary Light text
+* Typing indicator with animated dots when system is processing
+* Input field remains fixed at bottom with auto-expanding height
+* Message timestamps appear on hover with fade-in animation
+* Workflow attribution badges show data sources for each response
+
+#### Screen 6 State 3: Rich Response Display
+* Embedded charts and graphs with interactive hover states
+* Expandable sections for detailed data with smooth accordion animation
+* Data tables with sortable columns and pagination for large datasets
+* Export buttons positioned contextually with each data visualization
+* Response confidence indicators using color-coded badges
+* Copy/share functionality with success feedback animation
+* Progressive disclosure showing summary first, details on demand
+
+### Screen 7: Natural Language Query Processing
+#### Screen 7 State 1: Query Input with Suggestions
+* Expandable text input starting at single line, growing to maximum 5 lines
+* Auto-complete suggestions appear as overlay cards below input
+* Suggestions categorized by data source with visual icons
+* Recently used queries accessible via up arrow key navigation
+* Query validation with real-time feedback for recognized vs. unrecognized elements
+* Smart formatting suggestions for complex queries
+* Voice input with real-time transcription display and confidence indicators
+
+#### Screen 7 State 2: Query Processing
+* Input disabled with processing indicator and query locked in display
+* Workflow selection visualization showing which automations are being triggered
+* Progress steps showing: Query Analysis → Workflow Selection → Execution → Formatting
+* Estimated completion time with progress bar
+* Cancel option available during processing with confirmation modal
+* Real-time updates if multiple workflows are executing in parallel
+
+#### Screen 7 State 3: Query Results with Context
+* Response streaming with text appearing progressively
+* Data visualizations loading with skeleton placeholders then smooth reveal
+* Source attribution with expandable details showing data freshness
+* Related query suggestions appearing after response completion
+* Bookmark and share options positioned prominently
+* Error recovery suggestions if partial results available
+
+### Screen 8: Conversation History & Bookmarking
+#### Screen 8 State 1: History Sidebar
+* Collapsible sidebar with conversation list in chronological order
+* Conversation previews showing query snippet and timestamp
+* Visual indicators for bookmarked conversations using star icons
+* Search input at top of sidebar with real-time filtering
+* Infinite scroll loading with date separators for organization
+* Quick actions menu for each conversation (bookmark, delete, share)
+
+#### Screen 8 State 2: Conversation Detail View
+* Full conversation replay with original message formatting preserved
+* Jump-to-date functionality with timeline scrubber
+* Conversation-wide search with result highlighting
+* Export conversation button with format selection modal
+* Conversation analytics showing query patterns and most valuable insights
+* Related conversations suggestions based on topic similarity
+
+#### Screen 8 State 3: Bookmark Management
+* Dedicated bookmarks view with folder organization
+* Drag-and-drop sorting and categorization
+* Bulk actions for bookmark management
+* Tag system with color coding and filter capabilities
+* Bookmark sharing with permission controls
+* Quick access toolbar for most frequently referenced bookmarks
+
+## Chat History & Persistence
+
+### Screen 9: Complete Chat History Access
+#### Screen 9 State 1: Timeline Overview
+* Calendar-style view showing conversation activity over time
+* Heat map visualization indicating conversation density by date
+* Quick jump to specific time periods with smooth scrolling animation
+* Conversation clustering by topic with visual thread connections
+* Data usage visualization showing storage consumption over time
+* Archive access with compression status indicators
+
+#### Screen 9 State 2: Advanced Search Interface
+* Universal search with advanced query builder
+* Filter panels for date range, participants, data sources, and content type
+* Search result highlighting with context snippets
+* Saved search functionality with alert notifications for new matches
+* Search analytics showing most common queries and result effectiveness
+* Export search results with multiple format options
+
+#### Screen 9 State 3: Data Management Controls
+* Storage usage breakdown with visual charts
+* Data retention policy settings with clear explanations
+* Selective deletion tools with bulk selection capabilities
+* Archive and restore functionality with progress indicators
+* Data export for backup with encryption options
+* Privacy controls for sensitive conversation management
+
+## Workflow Integration
+
+### Screen 10: Workflow Discovery & Management
+#### Screen 10 State 1: Workflow Gallery
+* Card-based layout with workflow thumbnails and descriptions
+* Category filtering with visual badges and count indicators
+* Health status dashboard showing system-wide workflow performance
+* Usage analytics with charts showing popularity and success rates
+* Workflow search with semantic matching and tag-based filtering
+* Featured workflows section highlighting most valuable automations
+
+#### Screen 10 State 2: Workflow Detail View
+* Flow diagram visualization with interactive node exploration
+* Documentation panel with inline help and example queries
+* Usage history showing recent executions and performance metrics
+* Dependency mapping with related workflow connections
+* Test execution interface with parameter input forms
+* Version history with rollback capabilities and change tracking
+
+#### Screen 10 State 3: Health Monitoring Dashboard
+* Real-time status grid showing all workflow health indicators
+* Performance charts with execution time trends and error rates
+* Alert system with customizable thresholds and notification preferences
+* Automated healing status with retry attempt tracking
+* Diagnostic tools for troubleshooting failed executions
+* Maintenance mode controls with scheduled downtime management
+
+### Screen 11: Intelligent Workflow Execution
+#### Screen 11 State 1: Automatic Selection
+* Query analysis display showing recognized intent and entities
+* Workflow confidence scoring with visual indicators
+* Alternative suggestion bubbles for manual override options
+* Execution path visualization showing planned workflow chain
+* Performance prediction with estimated completion time
+* User override controls for manual workflow selection
+
+#### Screen 11 State 2: Execution Monitoring
+* Step-by-step progress visualization with current workflow highlighted
+* Real-time logs streaming with error highlighting
+* Resource usage monitoring with performance graphs
+* Parallel execution tracking for multiple workflow chains
+* Pause/resume controls for long-running processes
+* Debug mode toggle for detailed execution information
+
+#### Screen 11 State 3: Result Attribution
+* Source breakdown showing data contribution percentages
+* Data freshness indicators with last-updated timestamps
+* Confidence scoring for each result component
+* Workflow performance metrics embedded in results
+* Alternative data source suggestions for verification
+* Quality assessment with reliability scoring
+
+### Screen 12: Error Handling & Recovery
+#### Screen 12 State 1: Error State Display
+* User-friendly error messages with visual error illustrations
+* Technical details available in expandable sections
+* Suggested actions with one-click retry functionality
+* Alternative workflow suggestions when primary methods fail
+* Error pattern analysis with prevention recommendations
+* Support contact integration for complex issues
+
+#### Screen 12 State 2: Recovery Options
+* Automatic retry controls with customizable attempt limits
+* Fallback workflow selection with compatibility checking
+* Partial result recovery with data quality indicators
+* Manual intervention tools for advanced users
+* Error reporting with automated ticket creation
+* Learning system feedback for future error prevention
+
+## Template & Quick Actions
+
+### Screen 13: Pre-configured Prompt Templates
+#### Screen 13 State 1: Template Library
+* Role-based template categories with visual organization
+* Template cards showing preview queries and expected outputs
+* Popularity indicators with usage statistics and ratings
+* Quick preview modal with example results and data requirements
+* Template search with semantic matching and tag filtering
+* Personal template collection with customization options
+
+#### Screen 13 State 2: Template Application
+* Parameter customization form with guided input assistance
+* Preview functionality showing expected query structure
+* Data source compatibility checking with warning indicators
+* Quick execution with pre-filled parameters
+* Template saving with personal customizations preserved
+* Success tracking with usage analytics and effectiveness metrics
+
+### Screen 14: Custom Template Creation
+#### Screen 14 State 1: Template Builder
+* Drag-and-drop query construction with visual building blocks
+* Parameter definition with type validation and default values
+* Template testing interface with multiple scenario validation
+* Documentation editor with markdown support and inline preview
+* Sharing controls with permission settings and team distribution
+* Version control with branch management and collaborative editing
+
+#### Screen 14 State 2: Template Validation
+* Test execution with multiple parameter combinations
+* Performance benchmarking with execution time analysis
+* Data source validation ensuring template compatibility
+* Error scenario testing with failure handling verification
+* Template optimization suggestions with performance improvements
+* Quality scoring with best practice compliance checking
+
+### Screen 15: Contextual Suggestions & Follow-ups
+#### Screen 15 State 1: Smart Suggestions
+* Context-aware suggestion bubbles appearing after query results
+* Personalized recommendations based on user behavior patterns
+* Cross-data source suggestions for comprehensive analysis
+* Trend identification with proactive anomaly detection
+* Follow-up question generation with natural language formatting
+* Suggestion categorization with priority ordering and relevance scoring
+
+#### Screen 15 State 2: AI-Powered Discovery
+* Automated insight generation with pattern recognition
+* Predictive analytics suggestions based on historical data
+* Comparative analysis recommendations with benchmark data
+* Drill-down suggestions for deeper exploration
+* Alert creation for monitoring identified trends
+* Collaboration suggestions for sharing insights with relevant team members
+
+## Connection Visualization
+
+### Screen 16: Data Source Status & Health Monitoring
+#### Screen 16 State 1: Connection Dashboard
+* Visual topology showing all connected data sources with relationship mapping
+* Real-time status indicators using color-coded health monitoring
+* Connection performance metrics with latency and throughput charts
+* Historical reliability tracking with uptime percentages
+* Alert system with customizable thresholds and notification preferences
+* Quick actions for connection testing and troubleshooting
+
+#### Screen 16 State 2: Detailed Connection Health
+* Individual connection analysis with diagnostic information
+* Performance trending over time with comparative benchmarking
+* Error log access with filtering and search capabilities
+* Connection security audit with access pattern analysis
+* Automated healing status with retry mechanism tracking
+* Maintenance scheduling with planned downtime coordination
+
+### Screen 17: Response Attribution & Transparency
+#### Screen 17 State 1: Data Lineage Visualization
+* Interactive flow diagrams showing data transformation paths
+* Source contribution percentages with visual weighting
+* Data freshness indicators with last-update timestamps
+* Confidence scoring with reliability assessment metrics
+* Quality indicators with accuracy and completeness measures
+* Audit trail access with complete provenance tracking
+
+#### Screen 17 State 2: Attribution Detail View
+* Comprehensive source breakdown with detailed metadata
+* Data quality scoring with reliability metrics and historical accuracy
+* Transform history showing processing steps and modifications
+* Compliance tracking with audit requirements and regulatory alignment
+* Source credibility weighting with user-defined trust levels
+* Alternative source suggestions for data verification and cross-validation
+
+### Screen 18: Connection Management & Configuration
+#### Screen 18 State 1: Connection Wizard
+* Step-by-step connection setup with guided instructions
+* Authentication method selection with security best practices
+* Permission configuration with granular access controls
+* Connection testing with comprehensive validation checks
+* Configuration templates for common integration patterns
+* Security scanning with vulnerability assessment and recommendations
+
+#### Screen 18 State 2: Advanced Configuration
+* Custom API endpoint configuration with validation
+* Authentication credential management with secure storage
+* Rate limiting and throttling controls with performance optimization
+* Data transformation rules with preview and testing capabilities
+* Webhook configuration for real-time data synchronization
+* Backup and failover settings with disaster recovery planning
+
+#### Screen 18 State 3: Connection Analytics
+* Usage patterns analysis with query frequency and data volume metrics
+* Performance optimization recommendations with efficiency improvements
+* Cost analysis with resource consumption tracking
+* Security assessment with access pattern monitoring
+* Compliance reporting with audit trail generation
+* ROI tracking with value measurement and business impact analysis
+</app-screen-states>
+</design-considerations>
+
+Begin your response with detailed specification planning in <brainstorm> tags, then provide the complete technical specification following the prescribed format.
+</context>
